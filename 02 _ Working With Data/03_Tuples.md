@@ -1,4 +1,4 @@
-# Python Tuples, Explained Beautifully
+# Python Tuples
 
 > **A visual, beginner-friendly deep dive into Python’s tuple type**  
 > Learn to group values, read them by position, unpack them, and decide when a tuple is the right choice.
