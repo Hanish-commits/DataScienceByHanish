@@ -1,199 +1,116 @@
-# ============================================
-# Dictionaries
-# ============================================
+"""A hands-on tour of Python dictionaries.
 
-# Creating a dictionary
+Run this file with Python to see examples and results. It covers creating a
+dictionary, reading and changing entries, common methods, looping, nested data,
+comprehensions, and a small topic-tracker project.
+"""
 
-student = {
-    "name": "Hanish",
-    "age": 30,
-    "course": "Data Science"
-}
-
-print(student)
-print(type(student))
+print("=" * 64)
+print("PYTHON DICTIONARIES: A HANDS-ON TOUR")
+print("=" * 64)
 
 
-# Empty dictionary
+# 1. Creating dictionaries
+# A dictionary maps each key (label) to a value (the information).
+student = {"name": "Ada", "score": 98, "passed": True}
+empty_dictionary = {}
 
-empty = {}
-
-print(empty)
-print(type(empty))
-
-
-# Accessing values
-
-print(student["name"])
-print(student["age"])
+print("\n1. CREATING DICTIONARIES")
+print(f"Student record: {student}")
+print(f"Empty dictionary: {empty_dictionary}")
 
 
-# Using get()
+# 2. Reading values
+# Square brackets retrieve a value by key. get() handles a possibly missing key.
+print("\n2. READING VALUES")
+print(f"Student name: {student['name']}")
+print(f"Score: {student['score']}")
+print(f"Missing course, safely: {student.get('course', 'not set')}")
 
-print(student.get("name"))
-print(student.get("city"))
-print(student.get("city", "Not available"))
-
-
-# Adding a new key-value pair
-
-student["city"] = "Bengaluru"
-
-print(student)
-
-
-# Updating a value
-
-student["age"] = 31
-
-print(student)
+# 'in' checks keys. Use .values() when you want to search the values.
+print(f"Is 'name' a key? {'name' in student}")
+print(f"Is 'Ada' a key? {'Ada' in student}")
+print(f"Is 'Ada' a value? {'Ada' in student.values()}")
 
 
-# pop()
+# 3. Adding and changing entries
+# Assigning a new key adds a pair; assigning an existing key replaces its value.
+student["course"] = "Python"
+student["score"] = 100
+student.update({"level": "beginner", "passed": True})
 
-removed = student.pop("age")
-
-print(removed)
-print(student)
-
-
-# popitem()
-
-removed = student.popitem()
-
-print(removed)
-print(student)
+print("\n3. ADDING AND CHANGING")
+print(f"Updated student: {student}")
 
 
-# del
+# 4. Removing entries
+# pop() removes a key and returns its value. A default makes missing keys safe.
+removed_score = student.pop("score")
+student.pop("nickname", "no nickname")
+del student["level"]
 
-student = {
-    "name": "Hanish",
-    "age": 30,
-    "city": "Bengaluru"
-}
-
-del student["age"]
-
-print(student)
+print("\n4. REMOVING ENTRIES")
+print(f"Removed score: {removed_score}")
+print(f"Student now: {student}")
 
 
-# clear()
+# 5. Looping through keys, values, and pairs
+profile = {"name": "Ada", "course": "Python", "status": "learning"}
+print("\n5. LOOPING THROUGH A DICTIONARY")
+print("Keys:")
+for key in profile:
+    print(f"- {key}")
 
-student.clear()
+print("Key and value pairs:")
+for key, value in profile.items():
+    print(f"- {key}: {value}")
 
-print(student)
-
-
-# Checking whether a key exists
-
-student = {
-    "name": "Hanish",
-    "age": 30
-}
-
-print("name" in student)
-print("city" in student)
-print("Hanish" in student)
+print(f"Values view: {profile.values()}")
 
 
-# keys()
-
-print(student.keys())
-print(list(student.keys()))
-
-
-# values()
-
-print(student.values())
-print(list(student.values()))
-
-
-# items()
-
-print(student.items())
-
-
-# update()
-
-student.update({
-    "age": 31,
-    "city": "Bengaluru"
-})
-
-print(student)
-
-
-# Duplicate keys
-
-example = {
-    "name": "Hanish",
-    "name": "Rahul"
-}
-
-print(example)
-
-
-# Duplicate values
-
+# 6. Nested dictionaries
+# A value can be another dictionary. Follow each key to reach inner data.
 students = {
-    "student_1": "Python",
-    "student_2": "Python",
-    "student_3": "SQL"
+    "Ada": {"score": 98, "course": "Python"},
+    "Grace": {"score": 100, "course": "Computer Science"},
 }
 
-print(students)
+print("\n6. NESTED DICTIONARIES")
+print(f"Ada's score: {students['Ada']['score']}")
+print(f"Grace's course: {students['Grace']['course']}")
+print(f"Safe lookup: {students.get('Linus', {}).get('score', 'not available')}")
 
 
-# Different data types as values
+# 7. Dictionary comprehension
+# Build a dictionary by describing each key:value pair to create.
+numbers = [1, 2, 3, 4]
+squares = {number: number * number for number in numbers}
+even_squares = {number: number * number for number in numbers if number % 2 == 0}
 
-student = {
-    "name": "Hanish",
-    "age": 30,
-    "height": 5.9,
-    "is_learning": True
+print("\n7. DICTIONARY COMPREHENSION")
+print(f"Squares: {squares}")
+print(f"Even-number squares: {even_squares}")
+
+
+# 8. Mini-project: Python topic tracker
+topics = {
+    "Strings": "complete",
+    "Lists": "complete",
+    "Tuples": "in progress",
 }
 
-print(student)
+topics["Sets"] = "not started"
+topics["Tuples"] = "complete"
+
+print("\n8. MINI-PROJECT: PYTHON TOPIC TRACKER")
+for topic, status in topics.items():
+    print(f"- {topic}: {status}")
+
+complete_count = list(topics.values()).count("complete")
+print(f"Completed topics: {complete_count} of {len(topics)}")
+print(f"Dictionaries status: {topics.get('Dictionaries', 'not started')}")
 
 
-# List inside a dictionary
-
-student = {
-    "name": "Hanish",
-    "skills": ["Python", "SQL", "Excel"]
-}
-
-print(student["skills"])
-print(student["skills"][0])
-
-
-# Dictionary inside a dictionary
-
-student = {
-    "name": "Hanish",
-    "details": {
-        "age": 30,
-        "city": "Bengaluru"
-    }
-}
-
-print(student["details"]["city"])
-
-
-# Dictionary length
-
-print(len(student))
-
-
-# Practical example
-
-product = {
-    "name": "Laptop",
-    "price": 75000,
-    "quantity": 2
-}
-
-total = product["price"] * product["quantity"]
-
-print(total)
+print("\n" + "=" * 64)
+print("TOUR COMPLETE — try changing the examples and running the file again.")
+print("=" * 64)
