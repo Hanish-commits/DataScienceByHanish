@@ -1,4 +1,4 @@
-# Python Lists, Explained Beautifully
+# Python Lists
 
 > **A visual, beginner-friendly deep dive into Python’s list type**  
 > Learn to store, inspect, change, sort, and process groups of values.

@@ -1,4 +1,4 @@
-"""A hands-on tour of Python lists.
+"""A hands-on practice of Python lists.
 
 Run this file with Python to see examples and results. It covers creating lists,
 reading and slicing them, changing contents, copying, looping, searching,
