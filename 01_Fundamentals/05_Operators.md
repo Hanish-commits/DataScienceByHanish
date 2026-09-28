@@ -1,372 +1,475 @@
-# Operators
+# Python Operators
 
-Operators are symbols or keywords that Python uses to perform operations on values.
-
-For example:
-
-```python
-a = 10
-b = 5
-
-print(a + b)
-```
-
-Here, `+` is an operator that tells Python to add the two values.
-
-Operators become important because they allow me to **calculate, compare, assign, and work with data**.
+> **A detailed, beginner-friendly chapter on the symbols and keywords that work with values**  
+> Learn arithmetic, assignment, comparison, logical, membership, identity, and bitwise operators—with examples of what each expression produces.
 
 ---
 
-## Arithmetic Operators
+## The one-minute picture
 
-Arithmetic operators are used for mathematical calculations.
-
-| Operator | Meaning        |   Example | Result |
-| -------- | -------------- | --------: | -----: |
-| `+`      | Addition       |  `10 + 5` |   `15` |
-| `-`      | Subtraction    |  `10 - 5` |    `5` |
-| `*`      | Multiplication |  `10 * 5` |   `50` |
-| `/`      | Division       |  `10 / 5` |  `2.0` |
-| `//`     | Floor Division | `10 // 3` |    `3` |
-| `%`      | Modulus        |  `10 % 3` |    `1` |
-| `**`     | Exponentiation |  `2 ** 3` |    `8` |
-
-### Example
+An **operator** tells Python to perform an action on one or more values. The values it works with are called **operands**.
 
 ```python
-a = 10
-b = 3
-
-print(a + b)
-print(a - b)
-print(a * b)
-print(a / b)
-print(a // b)
-print(a % b)
-print(a ** b)
+answer = 8 + 3
 ```
 
-### Output
+Here, `+` is the operator; `8` and `3` are operands; and the expression produces `11`.
 
-```text
-13
-7
-30
-3.3333333333333335
-3
-1
-1000
+```mermaid
+flowchart LR
+    A[Operand: 8] --> C[Operator: +]
+    B[Operand: 3] --> C
+    C --> D[Result: 11]
 ```
 
-### What I noticed
-
-`/` and `//` are different.
-
-```python
-10 / 3
-```
-
-gives the regular division result, while:
-
-```python
-10 // 3
-```
-
-gives the floor-division result.
-
-The `%` operator gives the **remainder**, which will become useful later when working with conditions and loops.
+Python has operators for calculations, comparisons, logic, and more. Some symbols can do different jobs depending on the operand types: `+` adds numbers but joins strings.
 
 ---
 
-## Assignment Operators
+## 1. Arithmetic operators
 
-Assignment operators are used to assign or update values.
+Arithmetic operators perform calculations on numbers.
 
-The basic assignment operator is:
+Let `a = 17` and `b = 5`:
 
-```python
-=
-```
+| Operator | Name | Example | Result |
+|---|---|---|---:|
+| `+` | Addition | `a + b` | `22` |
+| `-` | Subtraction | `a - b` | `12` |
+| `*` | Multiplication | `a * b` | `85` |
+| `/` | Division | `a / b` | `3.4` |
+| `//` | Floor division | `a // b` | `3` |
+| `%` | Modulo (remainder) | `a % b` | `2` |
+| `**` | Exponentiation | `a ** 2` | `289` |
 
-Example:
+### Division `/`
 
-```python
-score = 100
-```
-
-Python also provides compound assignment operators.
-
-```python
-score = 100
-
-score += 10
-print(score)
-
-score -= 20
-print(score)
-
-score *= 2
-print(score)
-```
-
-### Output
-
-```text
-110
-90
-180
-```
-
-For example:
+`/` performs regular division and usually returns a float—even when the answer is a whole number.
 
 ```python
-score += 10
+10 / 2  # 5.0
 ```
 
-is another way of writing:
+### Floor division `//`
+
+`//` rounds the quotient **down** to the next whole-number boundary. For positive numbers, it looks like dropping the decimal part; with negatives, “down” means toward negative infinity.
 
 ```python
-score = score + 10
+17 // 5   # 3
+-7 // 2   # -4, because -3.5 rounded down is -4
+```
+
+### Modulo `%`
+
+`%` gives the remainder after floor division. It is often used to test even and odd values:
+
+```python
+10 % 3  # 1
+8 % 2   # 0: 8 divides evenly by 2
+9 % 2   # 1: 9 is odd
+```
+
+A number is even if `number % 2 == 0`.
+
+### Exponentiation `**`
+
+`**` raises the left value to the power of the right value:
+
+```python
+2 ** 3  # 8, because 2 × 2 × 2 = 8
+```
+
+### Unary plus and minus
+
+Unary operators act on one value:
+
+```python
+value = 5
+-value  # -5
++value  # 5
 ```
 
 ---
 
-## Comparison Operators
+## 2. Assignment operators
 
-Comparison operators are used to compare two values.
-
-The result of a comparison is a Boolean value:
-
-`True` or `False`.
-
-| Operator | Meaning                  |
-| -------- | ------------------------ |
-| `==`     | Equal to                 |
-| `!=`     | Not equal to             |
-| `>`      | Greater than             |
-| `<`      | Less than                |
-| `>=`     | Greater than or equal to |
-| `<=`     | Less than or equal to    |
-
-### Example
+The assignment operator `=` stores the result of the right-hand expression under the name on the left.
 
 ```python
-age = 25
-
-print(age == 25)
-print(age != 30)
-print(age > 18)
-print(age < 18)
-print(age >= 25)
-print(age <= 20)
+score = 80
 ```
 
-### Output
+This is not a comparison. It is an instruction to assign a value.
 
-```text
-True
-True
-True
-False
-True
-False
+### Augmented assignment
+
+Augmented assignment combines an operation with reassignment:
+
+```python
+score = 80
+score += 5  # same result as score = score + 5; now 85
+score -= 2  # now 83
+score *= 2  # now 166
+score //= 10  # now 16
 ```
 
-This is important because comparison operators allow programs to **make decisions based on data**.
+Common augmented operators:
 
-I will use them much more when I reach `if` statements and control flow.
+| Form | Similar to |
+|---|---|
+| `x += y` | `x = x + y` |
+| `x -= y` | `x = x - y` |
+| `x *= y` | `x = x * y` |
+| `x /= y` | `x = x / y` |
+| `x //= y` | `x = x // y` |
+| `x %= y` | `x = x % y` |
+| `x **= y` | `x = x ** y` |
+
+For mutable objects such as lists, augmented assignment can update the existing object in place. For immutable values such as integers, it calculates a result and rebinds the name.
 
 ---
 
-## Logical Operators
+## 3. Comparison operators
 
-Logical operators are used to combine or modify conditions.
+Comparison operators ask a question and produce a Boolean: `True` or `False`.
 
-The three main logical operators are:
+| Operator | Meaning | Example |
+|---|---|---|
+| `==` | Equal to | `score == 100` |
+| `!=` | Not equal to | `status != "complete"` |
+| `<` | Less than | `age < 18` |
+| `<=` | Less than or equal to | `score <= 100` |
+| `>` | Greater than | `price > 10` |
+| `>=` | Greater than or equal to | `score >= 60` |
 
-* `and`
-* `or`
-* `not`
+```python
+score = 85
+print(score >= 60)  # True
+print(score == 100) # False
+```
+
+### `=` versus `==`
+
+```python
+score = 85      # assign 85 to score
+score == 85     # ask whether score equals 85; result is True
+```
+
+Using one in place of the other changes the meaning. In an `if` statement, use `==` when you mean to compare.
+
+### Chained comparisons
+
+Python can combine range checks:
+
+```python
+score = 85
+0 <= score <= 100  # True
+```
+
+This means `0 <= score and score <= 100`.
+
+---
+
+## 4. Logical operators: `and`, `or`, `not`
+
+Logical operators combine conditions or reverse a truth value.
 
 ### `and`
 
-Both conditions must be `True`.
+`A and B` is true only when both conditions are true.
 
 ```python
-age = 25
-
-print(age > 18 and age < 30)
-```
-
-### Output
-
-```text
-True
+score = 85
+submitted = True
+score >= 60 and submitted  # True
 ```
 
 ### `or`
 
-At least one condition must be `True`.
+`A or B` is true when at least one condition is true.
 
 ```python
-age = 25
-
-print(age < 18 or age > 20)
-```
-
-### Output
-
-```text
-True
+is_weekend = False
+is_holiday = True
+is_weekend or is_holiday  # True
 ```
 
 ### `not`
 
-`not` reverses a Boolean result.
+`not A` reverses the truth value of `A`.
 
 ```python
-is_learning = True
-
-print(not is_learning)
+is_complete = False
+not is_complete  # True
 ```
 
-### Output
+### Short-circuit behavior
+
+Python may skip evaluating the right side when the left side already decides the answer:
+
+- `False and ...` is already false, so the right side is skipped.
+- `True or ...` is already true, so the right side is skipped.
+
+This is called **short-circuiting**. It is useful when the second condition should only be checked if the first makes it safe:
+
+```python
+name = "Ada"
+name != "" and name[0].isupper()
+```
+
+Because the left side checks that `name` is not empty, Python only indexes `name[0]` if the string has a character.
+
+### Precedence
+
+`not` binds more tightly than `and`, which binds more tightly than `or`. Use parentheses to make complex logic easier to understand:
+
+```python
+(score >= 60 and submitted) or teacher_approved
+```
+
+---
+
+## 5. Membership operators: `in` and `not in`
+
+Membership checks whether a value occurs in a collection or substring.
+
+```python
+topics = ["Strings", "Lists", "Operators"]
+"Lists" in topics        # True
+"Functions" not in topics  # True
+```
+
+They also work with strings:
+
+```python
+"Py" in "Python"  # True
+```
+
+For dictionaries, `in` checks **keys**:
+
+```python
+student = {"name": "Ada", "score": 98}
+"name" in student  # True
+"Ada" in student   # False: Ada is a value, not a key
+```
+
+Check dictionary values with `.values()`:
+
+```python
+"Ada" in student.values()  # True
+```
+
+---
+
+## 6. Identity operators: `is` and `is not`
+
+Identity asks whether two names refer to the **same object**, not merely equal values.
+
+```python
+first = [1, 2]
+second = first
+third = [1, 2]
+
+first == second  # True: same contents
+first is second  # True: same object
+first == third   # True: same contents
+first is third   # False: separate list objects
+```
+
+For almost all ordinary value comparisons, use `==`. The common beginner use of `is` is checking for the special singleton value `None`:
+
+```python
+result = None
+if result is None:
+    print("No result yet.")
+```
+
+Use `is not None` to check that a value is present. Do not use `is` to compare ordinary strings or numbers.
+
+---
+
+## 7. Bitwise operators (a first look)
+
+Bitwise operators work on the binary digits (bits) of integers. They are common in low-level programming, flags, and some specialized algorithms; many beginner programs will not need them immediately.
+
+For `a = 6` (`0b0110`) and `b = 3` (`0b0011`):
+
+| Operator | Name | What it does | Example result |
+|---|---|---|---:|
+| `&` | Bitwise AND | bit is 1 if both bits are 1 | `a & b` → `2` |
+| `|` | Bitwise OR | bit is 1 if either bit is 1 | `a | b` → `7` |
+| `^` | Bitwise XOR | bit is 1 if the bits differ | `a ^ b` → `5` |
+| `~` | Bitwise NOT | flips bits (Python integers are signed/unbounded) | `~a` → `-7` |
+| `<<` | Left shift | shifts bits left | `a << 1` → `12` |
+| `>>` | Right shift | shifts bits right | `a >> 1` → `3` |
+
+Do not confuse bitwise `&` and `|` with logical `and` and `or`. For ordinary conditions, use the word operators `and` and `or`.
+
+---
+
+## 8. Operators depend on the value types
+
+The same operator can have different meanings for different types.
+
+```python
+4 + 5                    # 9: numeric addition
+"Python" + " basics"    # 'Python basics': string concatenation
+"ha" * 3                 # 'hahaha': string repetition
+```
+
+An unsupported combination raises an error rather than guessing:
+
+```python
+# "Score: " + 85  # TypeError
+```
+
+Make the conversion or formatting explicit:
+
+```python
+"Score: " + str(85)
+f"Score: {85}"
+```
+
+---
+
+## 9. Operator precedence and parentheses
+
+When an expression contains several operators, Python follows precedence rules. Parentheses make a desired grouping explicit.
+
+```python
+2 + 3 * 4      # 14: multiplication first
+(2 + 3) * 4    # 20: parentheses first
+```
+
+A simplified order from tighter to looser for operators introduced here is:
+
+1. parentheses;
+2. exponentiation;
+3. unary `+`, `-`, `~`;
+4. `*`, `/`, `//`, `%`;
+5. `+`, `-`;
+6. shifts, bitwise operators;
+7. comparisons, membership, identity;
+8. `not`;
+9. `and`;
+10. `or`.
+
+You do not need to memorize every precedence rule immediately. Add parentheses when they help communicate your intent.
+
+---
+
+## 10. A practical mini-project: calculate a study result
+
+This example combines arithmetic, comparisons, logical operators, membership, and assignment.
+
+```python
+score = 86
+submitted = True
+bonus_points = 5
+completed_topics = ["Variables", "Data Types"]
+
+final_score = min(100, score + bonus_points)
+passed = final_score >= 60 and submitted
+studied_data_types = "Data Types" in completed_topics
+
+print(f"Final score: {final_score}")
+print(f"Passed: {passed}")
+print(f"Studied data types: {studied_data_types}")
+```
+
+Output:
 
 ```text
-False
+Final score: 91
+Passed: True
+Studied data types: True
 ```
 
-I will understand these operators more naturally when I start working with conditions.
+Each expression answers a different question: calculate a score, check multiple requirements, and test collection membership.
 
 ---
 
-## Operator Precedence
+## 11. Common operator mistakes
 
-Python follows rules that determine which operation is performed first.
+### Using `=` instead of `==`
 
-For example:
+`=` assigns; `==` compares.
 
-```python
-result = 10 + 5 * 2
-print(result)
-```
+### Using `is` instead of `==`
 
-### Output
+Use equality (`==`) for comparing values. Use identity (`is`) primarily for `None`.
+
+### Mixing logical and bitwise operators
+
+Use `and`/`or` for Boolean conditions. `&`/`|` operate on bits (and may have other type-specific uses).
+
+### Forgetting floor division rounds down
+
+With negative numbers, `-7 // 2` is `-4`, because floor means toward negative infinity.
+
+### Forgetting the type affects `+`
+
+`"4" + "5"` produces text `"45"`; `4 + 5` produces number `9`.
+
+### Writing a hard-to-read expression
+
+Use parentheses or named intermediate variables when the order or meaning is not immediately clear.
+
+---
+
+## 12. Quick reference
 
 ```text
-20
+ARITHMETIC    +  -  *  /  //  %  **
+ASSIGNMENT    =  +=  -=  *=  /=  //=  %=  **=
+COMPARISON    ==  !=  <  <=  >  >=
+LOGIC         and  or  not
+MEMBERSHIP    in  not in
+IDENTITY      is  is not
+BITWISE       &  |  ^  ~  <<  >>
 ```
 
-Multiplication happens before addition.
+### The most important mental checklist
 
-I can use parentheses when I want to make the order explicit:
-
-```python
-result = (10 + 5) * 2
-print(result)
-```
-
-### Output
-
-```text
-30
-```
-
-This is a useful habit because parentheses can make my intention clearer.
+1. **What type are the operands?** Operators can behave differently by type.
+2. **Am I assigning, comparing, or checking identity?** `=`, `==`, and `is` do different jobs.
+3. **Do I need both conditions, either one, or the opposite?** Choose `and`, `or`, or `not`.
+4. **Am I checking membership in a dictionary?** `in` checks keys by default.
+5. **Could parentheses make this expression easier to read?** Use them when helpful.
 
 ---
 
-## A Small Practical Example
+## 13. Practice (answers below)
 
-Operators become more useful when several operations are combined.
+1. What does `17 // 5` produce?
+2. What does `17 % 5` produce?
+3. What is the difference between `=` and `==`?
+4. What does `score >= 60 and submitted` require?
+5. What does `"Py" in "Python"` produce?
+6. What is the difference between `first == second` and `first is second` for lists?
+7. Which is the common way to check if `result` has no value (`None`)?
+8. What does `"4" + "5"` produce? What does `4 + 5` produce?
+9. What does `2 + 3 * 4` evaluate to?
+10. Which operators should you use for normal Boolean logic: `and`/`or` or `&`/`|`?
 
-```python
-price = 500
-quantity = 3
+<details>
+<summary><strong>Show the answers</strong></summary>
 
-total = price * quantity
-discount = 100
+1. `3`.
+2. `2`.
+3. `=` assigns a value; `==` compares two values.
+4. Both conditions must be true.
+5. `True`.
+6. `==` compares contents; `is` checks whether they are the same object.
+7. `result is None`.
+8. `"45"` and `9`.
+9. `14` because multiplication happens first.
+10. `and` and `or`.
 
-final_price = total - discount
-
-print(final_price)
-```
-
-### Output
-
-```text
-1400
-```
-
-Here I used:
-
-* `*` to calculate the total
-* `-` to subtract the discount
-* `=` to store the results
-
-This is a simple example of how operators can work together in a program.
-
----
-
-## What I Learned
-
-Operators allow me to:
-
-* perform calculations
-* update values
-* compare values
-* work with Boolean conditions
-* combine conditions
-* control the order of calculations
+</details>
 
 ---
 
-## What I Noticed
+## Final idea
 
-Until now, I had mainly been storing and displaying values.
-
-Operators showed me how I can actually **do something with those values**.
-
-I also noticed that some operators, such as comparison and logical operators, produce Boolean results. This connects directly to the control-flow concepts I will learn later.
-
----
-
-## Practice
-
-### Practice 1 — Calculator
-
-Create two numbers and calculate:
-
-* addition
-* subtraction
-* multiplication
-* division
-* modulus
-
-### Practice 2 — Comparison
-
-Create a variable called `age` and check whether:
-
-* it is greater than 18
-* it is equal to 18
-* it is less than 18
-
-### Practice 3 — Updating a Value
-
-Create:
-
-```python
-score = 50
-```
-
-Then increase it by `25`, decrease it by `10`, and multiply it by `2` using assignment operators.
-
-Try these yourself before looking for a solution.
-
----
-
-## My Learning Note
-
-> Operators helped me move from simply storing and displaying values to actually working with them. I am also starting to see how comparisons and Boolean results will eventually help Python make decisions.
-
----
+Operators are the tools Python uses to calculate, compare, combine conditions, and inspect collections. Their meaning depends partly on the types they work with. Learn the difference between assignment, equality, and identity; use the right logical operator; and add parentheses whenever they make your intent clearer.
