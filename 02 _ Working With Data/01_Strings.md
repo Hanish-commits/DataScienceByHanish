@@ -1,4 +1,4 @@
-# Python Strings, Explained Beautifully
+# Python Strings
 
 > **A visual, beginner-friendly deep dive into Python’s `str` type**  
 > Learn to read text, shape it, inspect it, search it, and format it with confidence.
